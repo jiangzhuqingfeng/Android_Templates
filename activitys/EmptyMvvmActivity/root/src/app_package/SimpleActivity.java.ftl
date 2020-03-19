@@ -2,24 +2,22 @@ package ${packageName};
 
 
 import android.os.Bundle;
-import androidx.appcompat.app.AppCompatActivity;
-
-import ${packageName}.${pageName}Contract;
-import ${packageName}.${pageName}Presenter;
+import ${packageName}.${pageName}ViewModel;
 
 
-public class ${pageName}Activity extends BaseMvpActivity<${pageName}Presenter> implements ${pageName}Contract.View {
+public class ${pageName}Activity extends BaseMvvmActivity<T,${pageName}ViewModel> {
 	
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+	@Override
+	public int getLayoutId(){
+		return R.layout.${layoutName};
+	}
+	
+	@Override
+	public void initViewData(View view){
+		mViewBinding.viewModel=mViewModel;
 		
-		setContentView(R.layout.${layoutName});
-	
-
-		//presenter初始化
-		mPresenter=new ${pageName}Presenter(this);
-    }
+	}
+    
 	
 }

@@ -11,13 +11,10 @@
                    to="${escapeXmlAttribute(srcOut)}/${pageName}Activity.java" />
     <open file="${escapeXmlAttribute(srcOut)}/${pageName}Activity.java" />
 	
-	<instantiate from="root/src/app_package/IContract.java.ftl"
-				 to="${escapeXmlAttribute(srcOut)}/${pageName}Contract.java" />
-	<open file="${escapeXmlAttribute(srcOut)}/${pageName}Contract.java" />
+	<instantiate from="root/src/app_package/ViewModel.java.ftl"
+				 to="${escapeXmlAttribute(srcOut)}/${pageName}ViewModel.java" />
+	<open file="${escapeXmlAttribute(srcOut)}/${pageName}ViewModel.java" />
 	
-	<instantiate from="root/src/app_package/Presenter.java.ftl"
-				 to="${escapeXmlAttribute(srcOut)}/${pageName}Presenter.java" />
-	<open file="${escapeXmlAttribute(srcOut)}/${pageName}Presenter.java" />
 	
 	<instantiate from="root/src/app_package/Model.java.ftl"
 				 to="${escapeXmlAttribute(srcOut)}/${pageName}Model.java" />

@@ -2,10 +2,10 @@
 <template
     format="5"
     revision="5"
-    name="Empty MVP Activity"
+    name="Empty MVVM Activity"
     minApi="9"
     minBuildApi="14"
-    description="Creates a new empty mvp activity">
+    description="Creates a new empty mvvm activity">
 
     <category value="Activity" />
     <formfactor value="Mobile" />
@@ -17,7 +17,7 @@
         type="string"
         constraints="unique|nonempty"
         default="Main"
-        help="填写页面名称，如填写Main会自动生成MainActivity,MainPresenter,MainModel文件"/>
+        help="填写页面名称，如填写Main会自动生成MainActivity,MainViewModel,MainModel文件"/>
 		
 	 <parameter
         id="activityClass"
@@ -61,32 +61,14 @@
         constraints="package"
         default="com.mycompany.myapp" />
 	
-			
-	<!--是否显示Contract-->		
-    <parameter
-        id="showContract"
-        name="Show Contract File"
-        type="boolean"
-        default="true"
-        help="If true, show IContract,Presenter,Model,anyway they will be created." />
-		
-	<!--显示Contract,默认创建，勾选只是是否显示-->
-		<parameter
-        id="contract"
-        name="IContract Name"
-        constraints="interface|unique|nonempty"
-		default="${pageName}Contract"
-		visibility="showContract"
-        help="The name of the contract to create for the activity" />
-		
+				
 	<!--显示Presenter-->
-		<parameter
-        id="presenter"
-        name="Presenter Name"
+	<parameter
+        id="viewModel"
+        name="ViewModel Name"
         constraints="class|unique|nonempty"
-		default="${pageName}Presenter"
-        visibility="showContract"
-        help="The name of the presenter to create for the activity" />
+		default="${pageName}ViewModel"
+        help="The name of the viewModel to create for the activity" />
 		
 	<!--显示Model-->
 	    <parameter
@@ -94,7 +76,6 @@
         name="Model Name"
         constraints="class|unique|nonempty"
 		default="${pageName}Model"
-        visibility="showContract"
         help="The name of the model to create for the activity" />
 		
 		
