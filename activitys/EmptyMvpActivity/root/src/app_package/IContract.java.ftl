@@ -14,7 +14,7 @@ public interface ${pageName}Contract{
 	
 	}
 	
-	interface Presenter extends IBasePresenter<View> {
+	interface Presenter{
 	
 	}
 	
