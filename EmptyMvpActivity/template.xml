@@ -1,0 +1,153 @@
+<?xml version="1.0"?>
+<template
+    format="5"
+    revision="5"
+    name="Empty MVP Activity"
+    minApi="9"
+    minBuildApi="14"
+    description="Creates a new empty mvp activity">
+
+    <category value="Activity" />
+    <formfactor value="Mobile" />
+	
+	<!--创建页面描述-->
+	<parameter
+        id="pageName"
+        name="Page Name"
+        type="string"
+        constraints="unique|nonempty"
+        default="Main"
+        help="填写页面名称，如填写Main会自动生成MainActivity,MainPresenter,MainModel文件"/>
+		
+	 <parameter
+        id="activityClass"
+        name="Activity Name"
+        type="string"
+        constraints="class|unique|nonempty"
+        default="${pageName}Activity"
+        help="The name of the activity class to create" />
+		
+			
+	<!--是否生成layout-->		
+    <parameter
+        id="generateLayout"
+        name="Generate Layout File"
+        type="boolean"
+        default="true"
+        help="If true, a layout file will be generated" />
+
+    <parameter
+        id="layoutName"
+        name="Layout Name"
+        type="string"
+        constraints="layout|unique|nonempty"
+        suggest="${activityToLayout(activityClass)}"
+		default="${activityToLayout(activityClass)}"
+        visibility="generateLayout"
+        help="The name of the layout to create for the activity" />
+
+ <parameter
+        id="isLauncher"
+        name="Launcher Activity"
+        type="boolean"
+        default="false"
+        help="If true, this activity will have a CATEGORY_LAUNCHER intent filter, making it visible in the launcher" />
+		
+	<!--包名-->
+    <parameter
+        id="packageName"
+        name="Package name"
+        type="string"
+        constraints="package"
+        default="com.mycompany.myapp" />
+	
+			
+	<!--是否显示Contract-->		
+    <parameter
+        id="showContract"
+        name="Show Contract File"
+        type="boolean"
+        default="true"
+        help="If true, show IContract,Presenter,Model,anyway they will be created." />
+		
+	<!--显示Contract,默认创建，勾选只是是否显示-->
+		<parameter
+        id="contract"
+        name="IContract Name"
+        constraints="interface|unique|nonempty"
+		default="${pageName}Contract"
+		visibility="showContract"
+        help="The name of the contract to create for the activity" />
+		
+	<!--显示Presenter-->
+		<parameter
+        id="presenter"
+        name="Presenter Name"
+        constraints="class|unique|nonempty"
+		default="${pageName}Presenter"
+        visibility="showContract"
+        help="The name of the presenter to create for the activity" />
+		
+	<!--显示Model-->
+	    <parameter
+        id="model"
+        name="Model Name"
+        constraints="class|unique|nonempty"
+		default="${pageName}Model"
+        visibility="showContract"
+        help="The name of the model to create for the activity" />
+		
+		
+    <parameter
+        id="includeInstantAppUrl"
+        name="Associate a URL with this Activity"
+        type="boolean"
+        default="false"
+        visibility="isInstantApp!false"
+        help="If true, this activity will be associated with URL, improving discovery of your Instant App" />
+
+    <parameter
+        id="instantAppActivityHost"
+        name="Instant App URL Host"
+        type="string"
+        suggest="${companyDomain}"
+        default="instantapp.example.com"
+        visibility="isInstantApp!false"
+        enabled="includeInstantAppUrl"
+        help="The domain to use in the Instant App route for this activity"/>
+
+    <parameter
+        id="instantAppActivityRouteType"
+        name="Instant App URL Route Type"
+        type="enum"
+        default="pathPattern"
+        visibility="isInstantApp!false"
+        enabled="includeInstantAppUrl"
+        help="The type of route to use in the Instant App route for this activity" >
+        <option id="path">Path</option>
+        <option id="pathPrefix">Path Prefix</option>
+        <option id="pathPattern">Path Pattern</option>
+    </parameter>
+
+    <parameter
+        id="instantAppActivityRoute"
+        name="Instant App URL Route"
+        type="string"
+        default="/.*"
+        visibility="isInstantApp!false"
+        enabled="includeInstantAppUrl"
+        help="The route to use in the Instant App route for this activity"/>
+		
+		
+	
+
+    <!-- 128x128 thumbnails relative to template.xml -->
+    <thumbs>
+        <!-- default thumbnail is required -->
+        <thumb>template_blank_activity.png</thumb>
+    </thumbs>
+
+    <globals file="globals.xml.ftl" />
+    <execute file="recipe.xml.ftl" />
+
+</template>
